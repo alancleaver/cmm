@@ -44,6 +44,166 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 11;
 -- -------------------------------------------------------------
 
+-- --------------------------------------------------------
+-- Alan's new structure for the companies table
+--
+-- Table structure for table `companies`
+--
+/*
+CREATE TABLE `companies` (
+  `id` int(255) UNSIGNED NOT NULL,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `credits` bigint(255) UNSIGNED NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(18) NOT NULL,
+  `website` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+*/
+
+-- Data dump of the test data from Alan's new companies table.
+
+--
+-- Dumping data for table `companies`
+--
+/*
+INSERT INTO `companies` (`id`, `active`, `name`, `credits`, `description`, `email`, `phone`, `website`) VALUES
+(1, 1, 'Tacos or Death Surveyors', 2, 'Give me tacos, or give me death. 50 cent tacos! I’ll take 30.  This will be 5 times this week and it’s only Tuesday.', 'tacotaco@tacosordeath.com', '441234567890', 'www.taconsordeath.com'),
+(2, 1, 'Barbacoa Surveyors', 13, 'BARBACOA!! Shrimp tacos are tasty tacos! BARBACOA!! Tacos dorados called flautas, or taquitos, for which the tortillas are filled with pre-cooked shredded chicken, beef or barbacoa, rolled into an elongated cylinder and deep-fried until crisp. ', 'flautas@barbacoa-surveys.com', '441234567890', 'www.barbacoa-surveys.com'),
+(3, 1, 'Tasty Carnitas Surveys', 3, 'Make it a double there pal. It’s raining tacos, from out of the sky, tacos, don’t even ask why. CARNITAS!! Fish tacos: lettuce or cabbage, pico de gallo, avocado and a sour cream or citrus/mayonnaise sauce, all placed on top of a corn or flour tortilla. Does guac cost extra?', 'tasty@carnitas-surveys.com', '441234567890', 'www.carnitas-surveys.com'),
+(4, 1, 'El Pollo Diablo Surveys', 19, 'Ooh, with diced onions and a pinch of cilantro. Add in a few el Pastor with guac and diced onions. These tacos are lit ', 'bokbok@diablo-surveyors.com', '441234567890', 'diablo-surveyors.com'),
+(5, 1, 'De Adobada Surveys', 6, 'How do you feel about hard shelled tacos? It’s long been rumored that the chupacabra is really just a crazed man who’s local taco shop went out of business. Tacos, again? This will be 5 times this week and it’s only Tuesday.', 'deadobada@deadobada.com', '441234567890', 'www.deadobada.com'),
+(6, 1, 'Al Pastor Surveys', 3, 'Every day is taco ipsum tuesday. CARNITAS!! TACOS!! Josh’s taco shack is the best taco shack. Give me all your tacos. Tacos Al pastor/De Adobada are made of thin pork steaks seasoned with adobo seasoning, then skewered and overlapped on one another on a vertical rotisserie cooked and flame-broiled as it spins. ', 'al@pastor-surveys.com', '441234567890', 'www.pastor-surveys.com'),
+(7, 1, 'Cholula Surveyors', 8, 'Um, Tabasco? No thanks, do you have any Cholula? BARBACOA!! Say taco one more time. BARBACOA!! Burritos are very tasty. ', 'lit@cholula-surveyors.com', '441234567890', 'www.cholula-surveyors.com'),
+(8, 1, 'Carne Asada Surveys', 0, 'Tacos dorados called flautas, or taquitos, for which the tortillas are filled with pre-cooked shredded chicken, beef or barbacoa, rolled into an elongated cylinder and deep-fried until crisp. I’d have to say, those tacos are on fleek. ', 'crispy@carne-asada-surveyors.com', '441234567890', 'www.carne-asada-surveyors.com'),
+(9, 0, 'Josh\'s Taco Shack', 0, 'Josh’s taco shack is the best taco shack.', 'josh@tacoshack.com', '441234567890', 'www.tacoshack.com'),
+(10, 0, 'Buuuu Riiii Tooo Surveys', 97, 'I’ve been following that taco truck around all day. If you were a taco, would you eat yourself?', 'ri@burritosurveys.com', '441234567890', 'www.burritosurveys.com');
+
+*/
+
+/*
+-- --------------------------------------------------------
+
+-- Alan's new table to replace existing company_matching_settings table.
+
+--
+-- Table structure for table `company_survey_types`
+--
+
+CREATE TABLE `company_survey_types` (
+  `company_id_fk` int(10) UNSIGNED NOT NULL,
+  `postcode` varchar(2) NOT NULL,
+  `bedroom` tinyint(3) UNSIGNED NOT NULL,
+  `type` tinyint(3) UNSIGNED NOT NULL COMMENT '0 = All/unknown, 1 = homebuyer, 2 = building, 3 = valuation'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company_survey_types`
+--
+
+INSERT INTO `company_survey_types` (`company_id_fk`, `postcode`, `bedroom`, `type`) VALUES
+(1, 'CF', 1, 2),
+(1, 'CF', 2, 2),
+(1, 'CF', 3, 2),
+(1, 'CF', 4, 2),
+(1, 'CF', 5, 2),
+(2, 'CF', 2, 2),
+(2, 'CF', 3, 2),
+(2, 'CF', 4, 2),
+(3, 'CF', 3, 2),
+(3, 'CF', 4, 2),
+(3, 'CF', 5, 2),
+(4, 'CF', 2, 2),
+(4, 'CF', 3, 2),
+(4, 'CF', 4, 2),
+(4, 'CF', 5, 2),
+(1, 'CF', 1, 1),
+(1, 'CF', 2, 1),
+(1, 'CF', 3, 1),
+(1, 'CF', 4, 1),
+(1, 'CF', 5, 1),
+(2, 'CF', 2, 1),
+(2, 'CF', 3, 1),
+(2, 'CF', 4, 1),
+(3, 'CF', 3, 1),
+(3, 'CF', 4, 1),
+(3, 'CF', 5, 1),
+(4, 'CF', 2, 1),
+(4, 'CF', 3, 1),
+(4, 'CF', 4, 1),
+(4, 'CF', 5, 1),
+(1, 'CF', 1, 3),
+(1, 'CF', 2, 3),
+(1, 'CF', 3, 3),
+(1, 'CF', 4, 3),
+(1, 'CF', 5, 3),
+(2, 'CF', 2, 3),
+(2, 'CF', 3, 3),
+(2, 'CF', 4, 3),
+(3, 'CF', 3, 3),
+(3, 'CF', 4, 3),
+(3, 'CF', 5, 3),
+(4, 'CF', 2, 3),
+(4, 'CF', 3, 3),
+(4, 'CF', 4, 3),
+(4, 'CF', 5, 3),
+(9, 'CF', 1, 2),
+(9, 'CF', 1, 1),
+(9, 'CF', 1, 3),
+(5, 'B', 1, 2),
+(5, 'B', 2, 2),
+(5, 'B', 3, 2),
+(5, 'B', 4, 2),
+(5, 'B', 5, 2),
+(6, 'BS', 2, 2),
+(6, 'BS', 3, 2),
+(7, 'B', 2, 2),
+(7, 'B', 3, 2),
+(7, 'B', 4, 2),
+(7, 'B', 5, 2),
+(8, 'B', 3, 2),
+(8, 'B', 4, 2),
+(8, 'B', 5, 2),
+(5, 'BS', 3, 1),
+(5, 'BS', 4, 1),
+(5, 'BS', 5, 1),
+(6, 'B', 2, 1),
+(6, 'B', 3, 1),
+(6, 'B', 4, 1),
+(6, 'B', 5, 1),
+(7, 'B', 2, 1),
+(7, 'B', 3, 1),
+(8, 'BS', 1, 1),
+(8, 'BS', 2, 1),
+(8, 'BS', 3, 1),
+(8, 'BS', 4, 1),
+(8, 'BS', 5, 1),
+(5, 'BS', 2, 3),
+(5, 'BS', 3, 3),
+(6, 'B', 3, 3),
+(6, 'B', 4, 3),
+(6, 'B', 5, 3),
+(7, 'B', 1, 3),
+(7, 'B', 2, 3),
+(7, 'B', 3, 3),
+(7, 'B', 4, 3),
+(7, 'B', 5, 3),
+(8, 'B', 2, 3),
+(8, 'B', 3, 3),
+(8, 'B', 4, 3),
+(8, 'B', 5, 3),
+(10, 'B', 3, 2),
+(10, 'B', 4, 2),
+(10, 'B', 3, 1),
+(10, 'B', 4, 1),
+(10, 'B', 3, 3),
+(10, 'B', 4, 3);
+COMMIT;
+
+
+*/
+
 
 -- Dump data of "company_matching_settings" ----------------
 BEGIN;

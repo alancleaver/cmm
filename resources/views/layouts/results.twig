@@ -1,8 +1,9 @@
 {% extends 'app.twig' %}
+{% block content %}
 
 <h1>Results</h1>
 
-<p>You matched with <!-- NUMBER OF COMPANIES MATCHED --> </p>
+<p>You matched with {{ matchedCompanies|length }} companies.</p>
 
 <div class="matches">
     {% for company in matchedCompanies %}
@@ -10,6 +11,7 @@
             <h3>{{ company.name }}</h3>
             <p>{{ company.description }}</p>
             <a href="#" class="matches__match__more">more</a>
+            <a href="#" class="matches__match__less" style="display:none">less</a>
 
             <div class="match__match__details" style="display:none">
                 <p><strong>Email:</strong> {{ company.email }}</p>
@@ -19,3 +21,22 @@
         </div>
     {% endfor %}
 </div>
+
+<script>
+
+   $(function() {
+        $('.matches__match__more').click(function() {
+            $(this).parent().children('.match__match__details').show();
+            $(this).hide();
+            $(this).parent().children('.matches__match__less').show();
+        });     
+
+        $('.matches__match__less').click(function() {
+            $(this).parent().children('.match__match__details').hide();
+            $(this).hide();
+            $(this).parent().children('.matches__match__more').show();
+        });     
+    });
+</script>
+
+{% endblock %}

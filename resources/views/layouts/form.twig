@@ -1,5 +1,6 @@
 {% extends 'app.twig' %}
 
+{% block content %}
 <form name="form" method="post">
 	<fieldset>
 		<legend>Contact Details</legend>
@@ -117,17 +118,17 @@
 			<label for="type" class="required">Survey type</label>
 			<span class="checker-wrap">
 				<label class="checker">
-					<input type="radio" value="homebuyer" name="type" required>
+					<input type="radio" value="1" name="type" required>
 					<span class="radio"></span>
 					HomeBuyer Survey
 				</label>
 				<label class="checker">
-					<input type="radio" value="building" name="type" required checked>
+					<input type="radio" value="2" name="type" required checked>
 					<span class="radio"></span>
 					Building Survey
 				</label>
 				<label class="checker">
-					<input type="radio" value="valuation" name="type" required>
+					<input type="radio" value="3" name="type" required>
 					<span class="radio"></span>
 					Valuation Survey
 				</label>
@@ -143,3 +144,14 @@
 		<input type="submit" name="compare" value="Compare Now">
 	</p>
 </form>
+
+<script>
+   $(function() {
+        $("form").on('submit', function() {
+            $(":submit").prop('disabled', true);
+        });  
+    });
+</script>
+
+
+{% endblock %}

@@ -201,7 +201,15 @@ INSERT INTO `company_survey_types` (`company_id_fk`, `postcode`, `bedroom`, `typ
 (10, 'B', 4, 3);
 COMMIT;
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `company_survey_types`
+--
+ALTER TABLE `company_survey_types`
+  ADD UNIQUE KEY `idx_unique` (`company_id_fk`,`postcode`,`bedroom`,`type`);
 */
 
 
